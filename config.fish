@@ -1,8 +1,10 @@
 if status is-login
     if test -z "$DISPLAY" -a "$XDG_VTNR" = 1
-		set WM $(gum choose "LeftWM" "Hyprland")
+		set WM $(gum choose "LeftWM" "Hyprland" "Qtile")
 		if [ $WM = "LeftWM" ]
-        	exec startx -- -keeptty
+        	exec startx ~/.xinitrc leftwm -- -keeptty
+		else if [ $WM = "Qtile" ]
+			exec startx ~/.xinitrc qtile
 		else if [ $WM = "Hyprland" ]
 			Hyprland
 		end
